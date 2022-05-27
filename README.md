@@ -4,6 +4,14 @@ In this project, we build an etl pipeline that extracts data residing in S3, tra
 # Background
 The data provided consists of a main, denormalised immigration data table, and supporting tables that hold data on airports, world temperature, and demographics in US cities, respectively. We are tasked to build an ETL pipeline that extracts this data from SAS and CSV files, normalise that data, perform quality controls on it, and then load it into a set of dimensional and fact tables for future querying.
 
+# Source Files
+The data used in this project resides in S3 and is separated into log (event) and metasong data. The logs on user activity (events) on the app are stored in one directory of JSON files, and metadata on the songs in their app is stored in a separate directory of JSON files. Please see header "Table diagram" for the content of the log and song data tables.
+
+- I94 Immigration Data: This data comes from the US National Tourism and Trade Office and is stored in a .sas7bdat-file.
+- World Temperature Data: This dataset came from Kaggle. This data resides in a .csv-file. You can read more about it here.
+- U.S. City Demographic Data: This data comes from OpenSoft. This data resides in a .csv-file. You can read more about it here.
+- Airport Code Table: This is a simple table of airport codes and corresponding cities. This data resides in a .csv-file. It comes from here.
+
 # Data model
 The data model covers sourcing data from local files and normalising it by structuring the data into a star schema. At present, the data from the respective tables do not seem to be relatable, so we will get four data models, 1 for the immigration data that gets normalised, and three for the remaining source tables.
 
@@ -44,14 +52,6 @@ Describes the arrival information into the US assuming immigrant arrived by air,
 2. ARLN_CD: Code of airline of arrival.
 3. FLGT_NO: Number of flight of arrival.
 4. ARR_DT: Date of arrival. Note this is different from admission date which is found in the Fact table.
-
-# Source Files
-The data used in this project resides in S3 and is separated into log (event) and metasong data. The logs on user activity (events) on the app are stored in one directory of JSON files, and metadata on the songs in their app is stored in a separate directory of JSON files. Please see header "Table diagram" for the content of the log and song data tables.
-
-- I94 Immigration Data: This data comes from the US National Tourism and Trade Office and is stored in a .sas7bdat-file.
-- World Temperature Data: This dataset came from Kaggle. This data resides in a .csv-file. You can read more about it here.
-- U.S. City Demographic Data: This data comes from OpenSoft. This data resides in a .csv-file. You can read more about it here.
-- Airport Code Table: This is a simple table of airport codes and corresponding cities. This data resides in a .csv-file. It comes from here.
 
 # Implementation
 The setup requires an IAM user in AWS that allows to store the data into an S3 cluster after transformations from their local files. Additionally, the program is written in pyspark to allow for big data manipulation. All transformations of data ultimately lead to creating the tables for the star schema and writing parquet files to the S3 cluster. The final product is shown in the "table diagram" header below.
