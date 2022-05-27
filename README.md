@@ -9,7 +9,7 @@ The data model covers sourcing data from local files and normalising it by struc
 
 The immigration data model in this project will follow a star schema consisting of admission data in a fact table and four dimension tables to support the fact table. The common key for all tables will be `cicid` to be renamed `IMM_ID` for all tables. It is suggested that the model develop into a Snowflake Schema with translation of all `CD`-fields in each table. This design will be outside the scope of this project.
 
-![Image of Immigration Data Model]('imm_data.jpg')
+![Image of Immigration Data Model]('./imm_data.jpg')
 
 ## Immigration Data
 
