@@ -26,7 +26,7 @@ As was covered in section 1 the data is loaded from several sources which will b
 4. Airports data
 5. Text file with documentation
 
-![Image of Immigration Data Model]('./imm_data.jpg')
+![Image of Immigration Data Model]('imm_data.jpg')
 
 There will be a heavy focus on field naming conventions to facilitate analysis. Thus we have some standards:
 - CD: Fields holding abbreviations such as AL end in CD to indicate they are a code for some meaning. E.g. AL is a state code for the state name Alabama.
