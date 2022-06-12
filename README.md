@@ -1,13 +1,14 @@
 # Purpose
-In this project, we build an etl pipeline that extracts Udacity provided data stored in sas7bdat- and csv-files. The pipeline then transforms that data and loads it into a star schema designed for flexible querying. Ultimately, we are building a data model that will give the client easy access to query their data. The client here may be anyone with an interest in immigration data, and the end purpose is to allow the client's analytics team to query the data ad hoc for simple analyses, or to integrate the data in a bigger flow to support automated analyses.
+In this project, we build an etl pipeline that extracts Udacity provided data stored in sas7bdat- and csv-files. The pipeline then transforms that data and loads it into a star schema designed for flexible querying. Ultimately, we are building a data model that will give the client easy access to query their data. 
 
-# Background
-The data provided consists of a main data table holding all immigration information, and supplementing data tables that hold data on airports, world temperature, and demographics in US cities, respectively. We are tasked to build an ETL pipeline that extracts this data from SAS and CSV files, normalise that data, perform quality controls on it, and then load it into a set of dimensional and fact tables for future querying.
+Once the data has been extracted and transformed it will be loaded to an S3 bucket where data can be read from or loaded to a redshift cluster for further computations.
 
-There is no clear link between the main table and the supplementary tables, and for this reason it has not been possible to link these tables. Approaches have been to create link between city names, longitudes and latitudes and more, but with no combination that has the quality and integrity to perform a reliable link. Thus, the supplementary tables will reside in parallel.
+The client here may be anyone with an interest in immigration data, and the end purpose is to allow the client's analytics team to query the data ad hoc for simple analyses, or to integrate the data in a bigger flow to support automated analyses.
 
-# Source Files
-The data used in this project resides in S3 and is separated into log (event) and metasong data. The logs on user activity (events) on the app are stored in one directory of JSON files, and metadata on the songs in their app is stored in a separate directory of JSON files. Please see header "Table diagram" for the content of the log and song data tables.
+# Data and Source files
+The data provided consists of a main data table holding all immigration information, and supplementing data tables that hold data on airports, world temperature, and demographics in US cities, respectively. Finally, a SAS-file documenting several, but not all, of the data in the immigration data set is used to translate codes and abbreviations in the immigratio data set which will be stored in separate tables.
+
+The data sets are as follows:
 
 - I94 Immigration Data: This data comes from the US National Tourism and Trade Office and is stored in a .sas7bdat-file.
 - World Temperature Data: This dataset came from Kaggle. This data resides in a .csv-file. You can read more about it here.
